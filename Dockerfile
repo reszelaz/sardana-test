@@ -56,4 +56,4 @@ RUN chown -R mysql /var/lib/mysql/tango
 
 ENV TANGO_HOST=sardana-test:10000
 # start supervisor as deamon
-CMD ["cd /sardana && python setup.py install && /usr/bin/supervisord"]
+CMD cd /sardana && python setup.py install && /usr/bin/supervisord
