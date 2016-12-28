@@ -5,8 +5,8 @@
 It is based on a [Debian](http://www.debian.org) stable and it provides the following infrastructure for installing and testing Sardana:
 
 * sardana dependencies and recommended packages (PyTango & itango, taurus, ipython, ...)
-* A Tango DB configured and running
-* sardana demo environment: Pool and MacroServer populated with sar_demo and some basic MacroServer environment variables
+* a Tango DB configured and running
+* sardana demo environment: Pool and MacroServer populated with the sar_demo macro and some basic MacroServer environment variables
 
 The primary use of this Docker image is to use it in our [Continuous Integration workflow](https://travis-ci.org/sardana-org/sardana).
 
@@ -51,3 +51,31 @@ python setup.py install
 apt-get install python-pip -y
 pip install git+https://github.com/sardana-org/sardana.git@develop
 ~~~~
+
+This image may be also involved in the development process, for example to execute the code under development on the host machine.
+In order to make the code available within the container it must be mounted as a volume on the container instantiation (this example uses `/sardana` directory as the mounting point, but it may be any other directory):
+
+~~~~
+docker run -d --name=sardana-test -h sardana-test -v <path-to-sardana-code-on-host-machine>:/sardana reszelaz/sardana-test
+~~~~
+
+Afterward the sardana should be installed in the develop mode:
+
+~~~~
+docker exec sardana-test bash -c "cd /sardana && python setup.py develop"
+~~~~
+
+Right after that it is possible to run sardana servers or applications within the container e.g.
+
+~~~~
+docker exec sardana-test supervisorctl start Pool # start Pool demo1 using supervisor (it will run Pool in background and exit)
+docker exec sardana-test Pool demo1 # start Pool demo1 directly with the docker exec (it will run Pool in foreground)
+docker exec sardana-test supervisorctl start MacroServer # start MacroServer demo1 using supervisor (it will run MacroServer in background and exit)
+docker exec sardana-test MacroServer demo1 # start MacroServer demo1 directly with the docker exec (it will run MacroServer in foreground)
+docker exec sardana-test spock # start spock application (see running GUI applications section above)
+docker exec sardana-test macroexecutor # start macroexecutor application (see running GUI applications section above)
+...
+~~~~
+
+
+  
