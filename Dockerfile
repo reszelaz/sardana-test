@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:jessie
 
 # add stretch repositories to obtain the latest taurus 3.6.0
 #RUN echo "deb http://ftp.es.debian.org/debian/ stretch main" >> \
