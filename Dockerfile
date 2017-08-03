@@ -1,14 +1,6 @@
-FROM debian:jessie
+FROM debian:stretch
 
-# add stretch repositories to obtain the latest taurus 3.6.0
-#RUN echo "deb http://ftp.es.debian.org/debian/ stretch main" >> \
-#    /etc/apt/sources.list && \
-#    echo "deb-src http://ftp.es.debian.org/debian/ stretch main" >> \
-#    /etc/apt/sources.list
-#RUN echo "deb http://ftp.debian.org/debian/ sid main" >> \
-#    /etc/apt/sources.list && \
-#    echo "deb-src http://ftp.debian.org/debian/ sid main" >> \
-#    /etc/apt/sources.list
+# Update the repo info
 RUN apt-get update
 
 # install and configure supervisor
@@ -27,33 +19,61 @@ ENV DEBIAN_FRONTEND noninteractive
 # RUN echo "exit 0" > /usr/sbin/policy-rc.d
 
 # install mysql server
-RUN apt-get install -y mysql-server
+RUN apt-get install -y default-mysql-server
 
 #install tango-db
 RUN apt-get install -y tango-db
 
+#install tango-test DS
+RUN apt-get install -y tango-test
+
+# install taurus dependencies
+RUN apt-get install -y python-numpy \
+                       python-enum34 \
+                       python-guiqwt \
+                       python-h5py \
+                       python-lxml \
+                       python-pint \
+                       python-ply \
+                       python-pytango \
+                       python-qt4 \
+                       python-qwt5-qt4 \
+                       python-spyderlib \
+                       python-pymca5 \
+                       qt4-designer
+
 # install sardana dependencies
-RUN apt-get install -y python ipython ipython-qtconsole python-lxml python-nxs\
-                       python-pytango #python-taurus
-RUN apt-get install -y python-pip git
+RUN apt-get install -y ipython-qtconsole \
+                       python-itango
+
+# install some utilities
+RUN apt-get install -y git \
+                       python-pip \
+                       vim \
+                       ipython \
+                       procps
+
+# Install taurus from develop
 RUN pip install git+https://github.com/taurus-org/taurus.git@develop
-RUN pip install itango==0.0.1
+
+# instal virtual monitor
+RUN apt-get install -y xvfb
+
+# configure virtual monitor env variable
+ENV DISPLAY=:1.0
+
 # configure supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/
 
-# add macroserver environment with:
-# _SAR_DEMO = <sar_demo execution results>
-# JsonRecorder = True
-# ScanDir = /tmp
-# ScanFile = test.h5, test.dat
-# ActiveMntGrp = mntgrp01
-RUN mkdir -p /tmp/tango/MacroServer/demo1
-COPY macroserver.properties /tmp/tango/MacroServer/demo1/
-
-# copy & untar mysql tango database (with sardemo) and change owner to mysql user
+# copy & untar mysql tango database and change owner to mysql user
 ADD tangodbsardemo.tar /var/lib/mysql/
 RUN chown -R mysql /var/lib/mysql/tango
 
+# define tango host env var
 ENV TANGO_HOST=sardana-test:10000
+
+# add USER ENV (necessary for spyderlib in taurus.qt.qtgui.editor)
+ENV USER=root
+
 # start supervisor as deamon
-CMD /usr/bin/supervisord
+CMD ["/usr/bin/supervisord"]
