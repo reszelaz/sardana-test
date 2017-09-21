@@ -18,6 +18,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # the database will be fead from file, instead of creating tables
 # RUN echo "exit 0" > /usr/sbin/policy-rc.d
 
+# install procps to manage processes
+RUN apt-get install -y procps
+
 # install mysql server
 RUN apt-get install -y default-mysql-server
 
