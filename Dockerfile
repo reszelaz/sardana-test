@@ -39,7 +39,7 @@ RUN apt-get install -y tango-db
 RUN apt-get install -y python ipython ipython-qtconsole python-lxml python-nxs\
                        python-pytango #python-taurus
 RUN apt-get install -y python-pip git
-RUN pip install git+https://github.com/taurus-org/taurus.git@3.7.4 --egg
+RUN pip install git+https://github.com/taurus-org/taurus.git@3.7.5 --egg
 RUN pip install itango==0.0.1
 # configure supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/
