@@ -17,6 +17,12 @@ ENV DEBIAN_FRONTEND noninteractive
 # the database will be fead from file, instead of creating tables
 # RUN echo "exit 0" > /usr/sbin/policy-rc.d
 
+# install some utilities
+RUN apt-get install -y python-pip \
+                       git \
+                       procps \
+                       vim
+
 # install mysql server
 RUN apt-get install -y default-mysql-server
 
@@ -44,12 +50,6 @@ RUN apt-get install -y ipython-qtconsole \
 RUN pip install git+https://github.com/taurus-org/taurus.git@develop
 # add USER ENV (necessary for spyderlib in taurus.qt.qtgui.editor)
 ENV USER=root
-
-# install some utilities
-RUN apt-get install -y python-pip \
-                       git \
-                       procps \
-                       vim
 
 # configure supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/
