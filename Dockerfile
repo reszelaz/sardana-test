@@ -1,14 +1,5 @@
-FROM debian:jessie
+FROM debian:stretch
 
-# add stretch repositories to obtain the latest taurus 3.6.0
-#RUN echo "deb http://ftp.es.debian.org/debian/ stretch main" >> \
-#    /etc/apt/sources.list && \
-#    echo "deb-src http://ftp.es.debian.org/debian/ stretch main" >> \
-#    /etc/apt/sources.list
-#RUN echo "deb http://ftp.debian.org/debian/ sid main" >> \
-#    /etc/apt/sources.list && \
-#    echo "deb-src http://ftp.debian.org/debian/ sid main" >> \
-#    /etc/apt/sources.list
 RUN apt-get update
 
 # install and configure supervisor
@@ -26,21 +17,40 @@ ENV DEBIAN_FRONTEND noninteractive
 # the database will be fead from file, instead of creating tables
 # RUN echo "exit 0" > /usr/sbin/policy-rc.d
 
-# install procps to manage processes
-RUN apt-get install -y procps
-
 # install mysql server
-RUN apt-get install -y mysql-server
+RUN apt-get install -y default-mysql-server
 
 #install tango-db
 RUN apt-get install -y tango-db
 
+# install taurus dependencies
+RUN apt-get install -y python-numpy \
+                       python-enum34 \
+                       python-guiqwt \
+                       python-h5py \
+                       python-lxml \
+                       python-pint \
+                       python-ply \
+                       python-pytango \
+                       python-qt4 \
+                       python-qwt5-qt4 \
+                       python-spyderlib \
+                       python-pymca5 \
+                       qt4-designer
+
 # install sardana dependencies
-RUN apt-get install -y python ipython ipython-qtconsole python-lxml python-nxs\
-                       python-pytango #python-taurus
-RUN apt-get install -y python-pip git
-RUN pip install git+https://github.com/taurus-org/taurus.git@3.7.5 --egg
-RUN pip install itango==0.0.1
+RUN apt-get install -y ipython-qtconsole \
+                       python-itango
+RUN pip install git+https://github.com/taurus-org/taurus.git@develop
+# add USER ENV (necessary for spyderlib in taurus.qt.qtgui.editor)
+ENV USER=root
+
+# install some utilities
+RUN apt-get install -y python-pip \
+                       git \
+                       procps \
+                       vim
+
 # configure supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/
 
