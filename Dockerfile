@@ -68,5 +68,12 @@ ADD tangodbsardemo.tar /var/lib/mysql/
 RUN chown -R mysql /var/lib/mysql/tango
 
 ENV TANGO_HOST=sardana-test:10000
+
+# instal virtual monitor
+RUN apt-get install -y xvfb
+
+# configure virtual monitor env variable
+ENV DISPLAY=:1.0
+
 # start supervisor as deamon
 CMD /usr/bin/supervisord
