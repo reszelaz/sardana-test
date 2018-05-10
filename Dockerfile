@@ -29,7 +29,8 @@ RUN apt-get install -y default-mysql-server
 RUN sed -i 's/\/var\/run\/mysqld\/mysqld.pid/\/tmp\/mysqld.pid/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN sed -i 's/\/var\/run\/mysqld\/mysqld.sock/\/tmp\/mysqld.sock/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN mkdir /var/run/mysqld
-RUN ln -s /tmp/mysqld.d /var/run/mysqld.d
+RUN ln -s /tmp/mysqld.sock /var/run/mysqld/mysqld.sock
+RUN ln -s /tmp/mysqld.pid /var/run/mysqld/mysqld.pid
 
 #install tango-db
 RUN apt-get install -y tango-db
