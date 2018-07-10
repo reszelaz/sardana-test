@@ -48,7 +48,9 @@ RUN apt-get install -y python-numpy \
                        python-qwt5-qt4 \
                        python-spyderlib \
                        python-pymca5 \
-                       qt4-designer
+                       qt4-designer \            
+                       python-sphinx-rtd-theme \
+                       graphviz 
 
 # install sardana dependencies
 RUN apt-get install -y ipython-qtconsole \
