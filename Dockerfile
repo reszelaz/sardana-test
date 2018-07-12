@@ -51,7 +51,8 @@ RUN apt-get install -y python-numpy \
                        qt4-designer \            
                        python-sphinx-rtd-theme \
                        graphviz \
-                       texlive
+                       texlive \
+                       dvipng
 
 # install sardana dependencies
 RUN apt-get install -y ipython-qtconsole \
