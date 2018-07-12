@@ -50,7 +50,8 @@ RUN apt-get install -y python-numpy \
                        python-pymca5 \
                        qt4-designer \            
                        python-sphinx-rtd-theme \
-                       graphviz 
+                       graphviz \
+                       texlive
 
 # install sardana dependencies
 RUN apt-get install -y ipython-qtconsole \
