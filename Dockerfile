@@ -52,6 +52,7 @@ RUN apt-get install -y python-numpy \
                        python-sphinx-rtd-theme \
                        graphviz \
                        texlive \
+                       texlive-latex-extra \
                        dvipng
 
 # install sardana dependencies
