@@ -83,9 +83,8 @@ docker exec sardana-test supervisorctl start MacroServer
 
 Or if you are interested in keeping the processes in foreground, for example to see their stdout or stderr:
 ~~~~
-
-docker exec sardana-test MacroServer demo1
 docker exec sardana-test Pool demo1
+docker exec sardana-test MacroServer demo1
 ~~~~
 
 Right after that it is possible to run any sardana client applications within the container e.g. spock or macroexecutor - see running GUI applications section above:
