@@ -53,7 +53,6 @@ python setup.py install
 - Example 3: using pip to do the same as in example 2:
 
 ~~~~
-apt-get install python-pip -y
 pip install git+https://github.com/sardana-org/sardana.git@develop
 ~~~~
 
