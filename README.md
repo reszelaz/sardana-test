@@ -1,7 +1,6 @@
 # sardana-test docker image
 
-[Docker](http://www.docker.com) image configuration for testing [Sardana]
-(http://www.sardna-controls.org) but not only...
+[Docker](http://www.docker.com) image configuration for testing [Sardana](http://www.sardna-controls.org) but not only...
 
 It is based on a [Debian](http://www.debian.org) stable and it provides the following infrastructure for installing and testing Sardana:
 
@@ -11,11 +10,8 @@ It is based on a [Debian](http://www.debian.org) stable and it provides the foll
 
 The primary use of this Docker image is to use it in our [Continuous Integration workflow](https://travis-ci.org/sardana-org/sardana).
 
-But you may also run it on your own machine to simply try sardana or even 
-use it as an execution environment if you plan to develop sardana project. 
-Before continuing, answer yourself which would be your use case, cause the 
-way you create the container differs and there is no way to change between 
-them other than recreating the container from scratch. 
+But you may also run it on your own machine to simply try sardana or even use it as an execution environment if you plan to develop sardana project.
+Before continuing, answer yourself which would be your use case, cause the way you create the container differs and there is no way to change between them other than recreating the container from scratch.
 
 ## How to try sardana using this image
 
@@ -63,11 +59,8 @@ pip install git+https://github.com/sardana-org/sardana.git@develop
 
 ## How to develop sardana using this image
 
-This image may be also involved in the development process, for example to
-execute inside of the container the code under development on the host machine.
-In order to make the code available within the container it must be mounted
-as a volume on the container instantiation (this example uses `/sardana`
-directory as the mounting point, but it may be any other directory):
+This image may be also involved in the development process, for example to execute inside of the container the code under development on the host machine.
+In order to make the code available within the container it must be mounted as a volume on the container instantiation (this example uses `/sardana` directory as the mounting point, but it may be any other directory):
 
 ~~~~
 docker run -d --name=sardana-test -h sardana-test -v <path-to-sardana-code-on-host-machine>:/sardana reszelaz/sardana-test
