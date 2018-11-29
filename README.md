@@ -29,7 +29,7 @@ Then you can log into the container with:
 docker exec -it sardana-test bash
 ~~~~
 
-Note: this image does not contain sardana itself (since it is designed for installing development versions of sardana) but you can install it easilly using any of the following examples in your container (for more details, see http://www.sardana-controls.org/users/getting_started.html).:
+Note: this image does not contain sardana itself (since it is designed for installing development versions of sardana) but you can install it easilly using any of the following examples in your container (for more details, see http://www.sardana-controls.org/users/getting_started/index.html).:
 
 - Example 1: installing sardana from the official debian repo:
 
