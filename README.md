@@ -72,14 +72,26 @@ Afterward the sardana should be installed in the develop mode:
 docker exec sardana-test bash -c "cd /sardana && python setup.py develop"
 ~~~~
 
-Right after that it is possible to run sardana servers or applications within the container e.g.
+## Start the Sardana system
 
+Regardless of the option that you had chosen for the Sardana installation (simply try Sardana or prepare a development environment) now is the time to start your Sardana system. The Sardana architecture used in this examples assumes Pool and MacroServer as separate servers, but remember that you can [run Sardana as a single server](https://sardana-controls.org/users/getting_started/running_server.html#running-sardana-as-a-tango-server) as well!
+
+You can run the servers using supervisor (it will run them in background and exit):
 ~~~~
-docker exec sardana-test supervisorctl start Pool # start Pool demo1 using supervisor (it will run Pool in background and exit)
-docker exec sardana-test Pool demo1 # start Pool demo1 directly with the docker exec (it will run Pool in foreground)
-docker exec sardana-test supervisorctl start MacroServer # start MacroServer demo1 using supervisor (it will run MacroServer in background and exit)
-docker exec sardana-test MacroServer demo1 # start MacroServer demo1 directly with the docker exec (it will run MacroServer in foreground)
-docker exec sardana-test spock # start spock application (see running GUI applications section above)
-docker exec sardana-test macroexecutor # start macroexecutor application (see running GUI applications section above)
-...
+docker exec sardana-test supervisorctl start Pool
+docker exec sardana-test supervisorctl start MacroServer
 ~~~~
+
+Or if you are interested in keeping the processes in foreground, for example to see their stdout or stderr:
+~~~~
+
+docker exec sardana-test MacroServer demo1
+docker exec sardana-test Pool demo1
+~~~~
+
+Right after that it is possible to run any sardana client applications within the container e.g. spock or macroexecutor - see running GUI applications section above:
+~~~~
+docker exec sardana-test spock
+docker exec sardana-test macroexecutor
+~~~~
+or any other...
