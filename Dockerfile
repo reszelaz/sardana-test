@@ -34,6 +34,8 @@ RUN ln -s /tmp/mysqld.pid /var/run/mysqld/mysqld.pid
 
 #install tango-db
 RUN apt-get install -y tango-db
+COPY libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb /tmp/
+RUN dpkg -i /tmp/libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb
 
 # install taurus dependencies
 RUN apt-get install -y python-numpy \
