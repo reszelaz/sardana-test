@@ -63,7 +63,7 @@ RUN apt-get install -y ipython-qtconsole \
 RUN pip install git+https://github.com/taurus-org/taurus.git@develop
 # Change locale from POSIX to en_US.UTF-8 due to taurus-org/taurus#836
 RUN apt-get install -y locales
-RUN locale-gen en_US.UTF-8  
+RUN sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen  
 ENV LANG en_US.UTF-8  
 ENV LC_ALL en_US.UTF-8
 
