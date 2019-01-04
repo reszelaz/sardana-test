@@ -61,11 +61,8 @@ RUN apt-get install -y python-numpy \
 RUN apt-get install -y ipython-qtconsole \
                        python-itango
 RUN pip install git+https://github.com/taurus-org/taurus.git@develop
-# Change locale from POSIX to en_US.UTF-8 due to taurus-org/taurus#836
-RUN apt-get install -y locales
-RUN sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen  
-ENV LANG en_US.UTF-8  
-ENV LC_ALL en_US.UTF-8
+# Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
+ENV LANG C.UTF-8
 
 # add USER ENV (necessary for spyderlib in taurus.qt.qtgui.editor)
 ENV USER=root
