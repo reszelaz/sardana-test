@@ -37,7 +37,7 @@ RUN apt-get install -y tango-db
 
 # install sardana dependencies
 RUN apt-get install -y python ipython ipython-qtconsole python-lxml python-nxs\
-                       python-pytango #python-taurus
+                       python-pytango python-h5py
 RUN apt-get install -y python-pip git
 RUN pip install git+https://github.com/taurus-org/taurus.git@3.x-sdn2.5.1 --egg
 RUN pip install itango==0.0.1
