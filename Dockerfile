@@ -42,6 +42,7 @@ RUN apt-get install -y python-pip git
 RUN pip install git+https://github.com/taurus-org/taurus.git@3.x-sdn2.5.1 --egg
 RUN pip install itango==0.0.1
 RUN pip install future
+RUN pip install mock
 # configure supervisord
 COPY supervisord.conf /etc/supervisor/conf.d/
 
