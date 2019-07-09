@@ -18,7 +18,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # RUN echo "exit 0" > /usr/sbin/policy-rc.d
 
 # install some utilities
-RUN apt-get install -y python-pip \
+RUN apt-get install -y python3-pip \
                        git \
                        procps \
                        vim
@@ -37,19 +37,26 @@ RUN apt-get install -y tango-db
 COPY libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb /tmp/
 RUN dpkg -i /tmp/libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb
 
+# install pyqt4 dummy package to avoid dependency problem with python3-qwt
+ADD python3-pyqt4-dummy_1.0_all.deb /
+RUN dpkg -i /python3-pyqt4-dummy_1.0_all.deb
+
+# define preferred Qt for qtchooser
+ENV QT_SELECT 5
+
 # install taurus dependencies
-RUN apt-get install -y python-numpy \
-                       python-enum34 \
-                       python-guiqwt \
-                       python-h5py \
-                       python-lxml \
-                       python-pint \
-                       python-ply \
-                       python-pytango \
-                       python-qt4 \
-                       python-qwt5-qt4 \
-                       python-spyderlib \
-                       python-pymca5 \
+RUN apt-get install -y python3-numpy \
+                       python3-pyqt5 \
+                       python3-pyqt5.qtopengl \
+                       python3-guiqwt \
+                       python3-h5py \
+                       python3-lxml \
+                       python3-pint \
+                       python3-future \
+                       python3-ply \
+                       python3-pytango \
+                       python3-spyderlib \
+                       python3-pymca5 \
                        qt4-designer \            
                        python-sphinx-rtd-theme \
                        graphviz \
@@ -58,9 +65,9 @@ RUN apt-get install -y python-numpy \
                        dvipng
 
 # install sardana dependencies
-RUN apt-get install -y ipython-qtconsole \
-                       python-itango
-RUN pip install git+https://github.com/taurus-org/taurus.git@develop
+RUN apt-get install -y python3-qtconsole \
+                       python3-itango
+RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
 
