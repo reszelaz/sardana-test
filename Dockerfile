@@ -84,7 +84,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/
 # ScanFile = test.h5, test.dat
 # ActiveMntGrp = mntgrp01
 RUN mkdir -p /tmp/tango/MacroServer/demo1
-COPY macroserver.properties /tmp/tango/MacroServer/demo1/
+COPY macroserver.properties* /tmp/tango/MacroServer/demo1/
 
 # copy & untar mysql tango database (with sardemo) and change owner to mysql user
 ADD tangodbsardemo.tar /var/lib/mysql/
