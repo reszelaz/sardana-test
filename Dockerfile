@@ -64,6 +64,11 @@ RUN apt-get install -y python3-numpy \
                        texlive-latex-extra \
                        dvipng
 
+# install PyTango 9.2.5 packaged at ALBA (9.2.0 from stretch has bugs)
+RUN apt-get remove -y python3-pytango
+ADD python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb /
+RUN dpkg -i /python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb
+
 # install sardana dependencies
 RUN apt-get install -y python3-qtconsole \
                        python3-itango
