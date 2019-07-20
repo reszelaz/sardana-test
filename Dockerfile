@@ -71,7 +71,8 @@ RUN dpkg -i /python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb
 
 # install sardana dependencies
 RUN apt-get install -y python3-qtconsole \
-                       python3-itango
+                       python3-itango \
+                       python3-matplotlib
 RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
