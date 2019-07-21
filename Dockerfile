@@ -58,7 +58,7 @@ RUN apt-get install -y python3-numpy \
                        python3-spyderlib \
                        python3-pymca5 \
                        qt4-designer \            
-                       python-sphinx-rtd-theme \
+                       python3-sphinx-rtd-theme \
                        graphviz \
                        texlive \
                        texlive-latex-extra \
