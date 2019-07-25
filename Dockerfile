@@ -49,6 +49,7 @@ RUN apt-get install -y python3-numpy \
                        python3-pyqt5 \
                        python3-pyqt5.qtopengl \
                        python3-guiqwt \
+                       python3-gdbm \
                        python3-h5py \
                        python3-lxml \
                        python3-pint \
