@@ -36,10 +36,10 @@ docker exec -it sardana-test bash
 
 Note: this image does not contain sardana itself (since it is designed for installing development versions of sardana) but you can install it easilly using any of the following examples in your container (for more details, see http://www.sardana-controls.org/users/getting_started/index.html).:
 
-- Example 1: installing sardana from the official debian repo:
+- ~Example 1: installing sardana from the official debian repo~ (currently not available yet in Jessie backports):
 
 ~~~~
-apt-get install python-sardana -y
+apt-get install python3-sardana -y
 ~~~~
 
 - Example 2: installing the latest develop version from the git repo (you may use any other branch instead of develop):
@@ -47,13 +47,13 @@ apt-get install python-sardana -y
 ~~~~
 git clone -b develop https://github.com/sardana-org/sardana.git
 cd sardana
-python setup.py install
+python3 setup.py install
 ~~~~
 
 - Example 3: using pip to do the same as in example 2:
 
 ~~~~
-pip install git+https://github.com/sardana-org/sardana.git@develop
+pip3 install git+https://github.com/sardana-org/sardana.git@develop
 ~~~~
 
 ## How to develop sardana using this image
