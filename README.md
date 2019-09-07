@@ -89,7 +89,7 @@ docker exec sardana-test MacroServer demo1
 
 Right after that it is possible to run any sardana client applications within the container e.g. spock or macroexecutor - see running GUI applications section above:
 ~~~~
-docker exec -it sardana-test bash # start spock inside of this bash session
+docker exec -it sardana-test spock # start spock inside of this bash session
 docker exec sardana-test macroexecutor
 ~~~~
 or any other...
