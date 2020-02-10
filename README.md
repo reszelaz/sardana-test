@@ -68,7 +68,7 @@ docker run -d --name=sardana-test -h sardana-test -v <path-to-sardana-code-on-ho
 Afterward the sardana should be installed in the develop mode:
 
 ~~~~
-docker exec sardana-test bash -c "cd /sardana && python setup.py develop"
+docker exec sardana-test bash -c "cd /sardana && python3 setup.py develop"
 ~~~~
 
 ## Start the Sardana system
