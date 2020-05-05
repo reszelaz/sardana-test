@@ -59,7 +59,6 @@ RUN apt-get install -y python3-numpy \
                        python3-spyderlib \
                        python3-pymca5 \
                        qt4-designer \            
-                       python3-sphinx-rtd-theme \
                        graphviz \
                        texlive \
                        texlive-latex-extra \
@@ -75,6 +74,10 @@ RUN apt-get install -y python3-qtconsole \
                        python3-itango \
                        python3-matplotlib
 RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
+
+# install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
+RUN pip3 install sphinx_rtd_theme
+
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
 
