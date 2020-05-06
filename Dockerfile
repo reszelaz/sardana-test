@@ -76,7 +76,7 @@ RUN apt-get install -y python3-qtconsole \
 RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
-RUN pip3 install --upgrade --no-deps sphinx sphinx_rtd_theme
+RUN pip3 install --upgrade sphinx sphinx_rtd_theme
 
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
