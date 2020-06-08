@@ -34,8 +34,8 @@ RUN ln -s /tmp/mysqld.pid /var/run/mysqld/mysqld.pid
 
 #install tango-db
 RUN apt-get install -y tango-db
-COPY libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb /tmp/
-RUN dpkg -i /tmp/libtango9_9.2.5a+dfsg1-2+patch3~bpo9+0~alba+1_amd64.deb
+COPY libtango9_9.2.5a+dfsg1-2+patch4~bpo9+0~alba+1_amd64.deb /tmp/
+RUN dpkg -i /tmp/libtango9_9.2.5a+dfsg1-2+patch4~bpo9+0~alba+1_amd64.deb
 
 # install pyqt4 dummy package to avoid dependency problem with python3-qwt
 ADD python3-pyqt4-dummy_1.0_all.deb /
@@ -77,6 +77,9 @@ RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
+
+# installed latest version of pytest to run sardana tests
+RUN pip3 install pytest
 
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
