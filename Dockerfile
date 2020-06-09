@@ -79,7 +79,7 @@ RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
 
 # installed latest version of pytest to run sardana tests
-RUN pip3 install pytest
+RUN pip3 install --upgrade pytest
 
 # Change locale from POSIX to C.UTF-8 due to taurus-org/taurus#836
 ENV LANG C.UTF-8
