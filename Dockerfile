@@ -73,7 +73,7 @@ RUN dpkg -i /python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb
 RUN apt-get install -y python3-qtconsole \
                        python3-itango \
                        python3-matplotlib
-RUN pip3 install git+https://github.com/taurus-org/taurus.git@develop
+RUN pip3 install git+https://github.com/taurus-org/taurus.git@4.7.0
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
