@@ -112,4 +112,4 @@ RUN apt-get install -y xvfb
 ENV DISPLAY=:1.0
 
 # start supervisor as deamon
-CMD /usr/bin/supervisord
+CMD /usr/bin/supervisord -n
