@@ -78,6 +78,9 @@ RUN pip3 install git+https://github.com/taurus-org/taurus.git@4.7.0
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
 
+# install sphinx napoleon extension to enable Google Style or Numpy Style docstrings
+RUN pip3 install sphinxcontrib-napoleon
+
 # installed latest version of pytest to run sardana tests
 RUN pip3 install --upgrade pytest
 
