@@ -34,8 +34,11 @@ RUN ln -s /tmp/mysqld.pid /var/run/mysqld/mysqld.pid
 
 #install tango-db
 RUN apt-get install -y tango-db
-COPY libtango9_9.2.5a+dfsg1-2+patch4~bpo9+0~alba+1_amd64.deb /tmp/
-RUN dpkg -i /tmp/libtango9_9.2.5a+dfsg1-2+patch4~bpo9+0~alba+1_amd64.deb
+# install libtango 9.3.4 with patch packaged at ALBA (includes fix for PyTango#315)
+COPY liblog4tango5v5_9.3.4+dfsg1-2~bpo9+1+salsaci_amd64.deb /tmp/
+COPY libtango9_9.3.4+dfsg1-2~bpo9+1+salsaci_amd64.deb /tmp/
+RUN dpkg -i /tmp/liblog4tango5v5_9.3.4+dfsg1-2~bpo9+1+salsaci_amd64.deb
+RUN dpkg -i /tmp/libtango9_9.3.4+dfsg1-2~bpo9+1+salsaci_amd64.deb
 
 # install pyqt4 dummy package to avoid dependency problem with python3-qwt
 ADD python3-pyqt4-dummy_1.0_all.deb /
@@ -64,10 +67,10 @@ RUN apt-get install -y python3-numpy \
                        texlive-latex-extra \
                        dvipng
 
-# install PyTango 9.2.5 packaged at ALBA (9.2.0 from stretch has bugs)
+# install PyTango 9.3.3 with patch packaged at ALBA (includes fix for PyTango#315)
 RUN apt-get remove -y python3-pytango
-ADD python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb /
-RUN dpkg -i /python3-tango_9.2.5-0~bpo9+0~alba+1_amd64.deb
+ADD python3-tango_9.3.3-patch1-1~bpo9+1+salsaci_amd64.deb /
+RUN dpkg -i /python3-tango_9.3.3-patch1-1~bpo9+1+salsaci_amd64.deb
 
 # install sardana dependencies
 RUN apt-get install -y python3-qtconsole \
