@@ -86,7 +86,7 @@ RUN apt-get remove -y python3-pyqtgraph
 ADD python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb /
 RUN dpkg -i /python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb
 
-RUN pip3 install taurus taurus_pyqtgraph
+RUN pip3 install taurus_pyqtgraph
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
