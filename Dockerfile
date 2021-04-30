@@ -76,7 +76,12 @@ RUN dpkg -i /python3-tango_9.3.3-patch1-1~bpo9+1+salsaci_amd64.deb
 RUN apt-get install -y python3-qtconsole \
                        python3-itango \
                        python3-matplotlib
-RUN pip3 install git+https://github.com/taurus-org/taurus.git@4.7.0
+
+# install pyqtgraph packaged at ALBA
+ADD python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb /
+RUN dpkg -i /python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb
+
+RUN pip3 install taurus taurus_pyqtgraph
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
 RUN pip3 install --upgrade sphinx sphinx_rtd_theme
