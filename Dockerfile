@@ -78,7 +78,10 @@ RUN apt-get install -y python3-qtconsole \
                        python3-matplotlib
 
 # install pyqtgraph packaged at ALBA
-RUN apt-get install -y python3-pyqtgraph
+RUN apt-get install -y python3-pyqtgraph \
+                       python3-pyqt5 \
+                       pyqt5-dev-tools \
+                       qtbase5-dev-tools
 RUN apt-get remove -y python3-pyqtgraph
 ADD python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb /
 RUN dpkg -i /python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb
