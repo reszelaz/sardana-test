@@ -88,7 +88,7 @@ RUN dpkg -i /python3-pyqtgraph_0.11.0+8.e3948c-1~bpo9+1+salsaci_all.deb
 
 RUN pip3 install -U pip
 # install taurus 4.9.0.dev0
-RUN pip3 install git+https://gitlab.com/taurus-org/taurus.git@9a3043ad 
+RUN pip3 install git+https://gitlab.com/taurus-org/taurus.git@824dd60ed
 RUN pip3 install taurus_pyqtgraph
 
 # install sphinx from PyPI to avoid problems with intersphinx mappings to PyTango
