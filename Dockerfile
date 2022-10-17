@@ -97,6 +97,9 @@ RUN pip3 install --upgrade sphinx sphinx_rtd_theme
 # install sphinx napoleon extension to enable Google Style or Numpy Style docstrings
 RUN pip3 install sphinxcontrib-napoleon
 
+# install sphinx mermaid extension to enable Mermaid graphs
+RUN pip3 install sphinxcontrib-mermaid
+
 # installed latest version of pytest to run sardana tests
 RUN pip3 install --upgrade pytest
 
